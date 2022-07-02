@@ -1,0 +1,12 @@
+<div *ngIf="(hero$ | async) as value; else elseBlock">
+  {{value['name']}}
+</div>
+
+
+<ng-template #elseBlock>
+  <div class="joke">
+    <a [routerLink]="['/home']" >  < VOLTAR</a>
+    <img src="assets/img/joke.png" >
+    Algo de errado não está certo
+  </div>
+</ng-template>

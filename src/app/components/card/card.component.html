@@ -1,0 +1,18 @@
+<!--<section className={ `${CardStyle.main} ${favorited ? CardStyle.favorited : '' }`  }>-->
+<section class="main">
+  <a class="imgContent" (click)="details(hero)">
+    <img class="img" [src]="hero.thumbnail.path + '.' + hero.thumbnail.extension" alt="Hero">
+  </a>
+
+  <button class="addHero" type="button"><img style="width: 38px" src="assets/icons/add-user.png"></button>
+
+  <div class="cardDescription" (click)="details(hero)">
+        <span class="nameHero">
+          {{hero.name.substr(0, 12)}}
+        </span><br/>
+    <span class="description">
+    {{hero.description.substr(0, 80)}}
+  </span>
+  </div>
+
+</section>

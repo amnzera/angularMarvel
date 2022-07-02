@@ -1,0 +1,19 @@
+<main class="home">
+  <section class="main">
+    <div class="flexGrid">
+
+    <div class="col" *ngFor="let hero of heroes" >
+            <app-card [hero]="hero" ></app-card>
+    </div>
+
+<!--        <InfiniteScroll-->
+<!--          pageStart={0}-->
+<!--          loadMore={loadFunc}-->
+<!--          hasMore={true || false}-->
+<!--          loader={<div className="loader" key={0}>Loading ...</div>}>-->
+<!--      </InfiniteScroll>-->
+
+<!--<app-paginator></app-paginator>-->
+    </div>
+  </section>
+</main>
