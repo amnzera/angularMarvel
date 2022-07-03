@@ -1,19 +1,19 @@
 <main class="home">
   <section class="main">
-    <div class="flexGrid">
+    <div class="flexGrid" *ngIf="heroes else loading">
 
-    <div class="col" *ngFor="let hero of heroes" >
-            <app-card [hero]="hero" ></app-card>
+      <div class="col" *ngFor="let hero of heroes">
+        <app-card [hero]="hero"></app-card>
+      </div>
+
+      <!--<app-paginator></app-paginator>-->
     </div>
 
-<!--        <InfiniteScroll-->
-<!--          pageStart={0}-->
-<!--          loadMore={loadFunc}-->
-<!--          hasMore={true || false}-->
-<!--          loader={<div className="loader" key={0}>Loading ...</div>}>-->
-<!--      </InfiniteScroll>-->
+    <ng-template #loading>
+      <div class="loading">
+        <img src="assets/icons/Funnel.gif">
+      </div>
+    </ng-template>
 
-<!--<app-paginator></app-paginator>-->
-    </div>
   </section>
 </main>

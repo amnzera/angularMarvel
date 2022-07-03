@@ -13,6 +13,7 @@ import { CardComponent } from './components/card/card.component';
 import { FavoritesComponent } from './page/favorites/favorites.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { DetailsComponent } from './page/details/details.component';
+import { ListGroupComponent } from './components/list-group/list-group.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DetailsComponent } from './page/details/details.component';
     CardComponent,
     FavoritesComponent,
     PaginatorComponent,
-    DetailsComponent
+    DetailsComponent,
+    ListGroupComponent
   ],
   imports: [
     BrowserModule,

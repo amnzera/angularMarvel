@@ -17,4 +17,8 @@ export class DetailsComponent implements OnInit {
    this.hero$ = this.characterService.hero
   }
 
+  getImage(character: any) {
+    return this.characterService.getImage(character.thumbnail);
+  }
+
 }

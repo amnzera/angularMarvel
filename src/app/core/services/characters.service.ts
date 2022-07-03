@@ -16,6 +16,11 @@ export class CharactersService {
     this.hero.next(hero)
   }
 
+  getImage(thumbnail: any) {
+    console.log(thumbnail)
+    return thumbnail && `${thumbnail.path}/standard_fantastic.${thumbnail.extension}`;
+  }
+
   getAllCharacters(): Observable<any> {
     return this.http.get<any>(`https://gateway.marvel.com/v1/public/characters`).pipe(
       map(response => {

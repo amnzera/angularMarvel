@@ -1,12 +1,41 @@
-<div *ngIf="(hero$ | async) as value; else elseBlock">
-  {{value['name']}}
-</div>
+<main>
+
+  <div *ngIf="(hero$ | async) as character; else elseBlock">
+    <div class="header">
+      <img *ngIf="character" [src]="getImage(character)">
+    </div>
+      <ng-container *ngIf="character">
+        <div class="info">
+          <h1 class="text-primary">{{character.name}}</h1>
+          <p [innerHtml]="character.description"></p>
+        </div>
+
+        <!-- comics -->
+        <app-list-group title="Comics" [items]="character['comics']['items']"></app-list-group>
+
+        <!-- series -->
+        <app-list-group title="Series" [items]="character['series']['items']"></app-list-group>
+
+        <!-- stories -->
+        <app-list-group title="Stories" [items]="character['stories']['items']"></app-list-group>
+
+        <!-- events -->
+        <app-list-group title="Events" [items]="character['events']['items']"></app-list-group>
+
+        <!-- references -->
+        <app-list-group title="References" key="type" link="url" [isLink]="true" [items]="character['urls']">
+        </app-list-group>
 
 
-<ng-template #elseBlock>
-  <div class="joke">
-    <a [routerLink]="['/home']" >  < VOLTAR</a>
-    <img src="assets/img/joke.png" >
-    Algo de errado não está certo
+      </ng-container>
   </div>
-</ng-template>
+
+
+  <ng-template #elseBlock>
+    <div class="joke">
+      <a [routerLink]="['/home']" >  < VOLTAR</a>
+      <img src="assets/img/joke.png" >
+      Algo de errado não está certo
+    </div>
+  </ng-template>
+</main>
