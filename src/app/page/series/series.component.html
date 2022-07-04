@@ -1,0 +1,15 @@
+<section class="main">
+  <div class="flexGrid" *ngIf="series else loading">
+
+    <div class="col" *ngFor="let serie of series">
+      <app-card (clickEmitter)="details($event)" [serie]="serie"></app-card>
+    </div>
+
+  </div>
+
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
+
+  <app-paginator (paginatorEmitter)="paginator($event)" ></app-paginator>
+</section>

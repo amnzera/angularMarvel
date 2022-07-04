@@ -1,0 +1,15 @@
+  <section class="main">
+    <div class="flexGrid" *ngIf="heroes else loading">
+
+      <div class="col" *ngFor="let hero of heroes">
+        <app-card (clickEmitter)="details($event)" [hero]="hero"></app-card>
+      </div>
+
+    </div>
+
+    <ng-template #loading>
+      <app-loading></app-loading>
+    </ng-template>
+
+    <app-paginator (paginatorEmitter)="paginator($event)" ></app-paginator>
+  </section>

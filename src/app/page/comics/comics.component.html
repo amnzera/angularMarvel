@@ -1,0 +1,16 @@
+  <section class="main">
+    <div class="flexGrid" *ngIf="comics else loading">
+
+      <div class="col" *ngFor="let comic of comics">
+        <app-card (clickEmitter)="detailsComic($event)" [comic]="comic"></app-card>
+      </div>
+
+    </div>
+
+    <ng-template #loading>
+      <app-loading></app-loading>
+    </ng-template>
+
+    <app-paginator (paginatorEmitter)="paginator($event)" ></app-paginator>
+  </section>
+

@@ -1,0 +1,37 @@
+<main>
+
+  <div *ngIf="(hero$ | async) as character; else joke">
+    <div class="header">
+      <img alt="image" *ngIf="character" [src]="getImage(character)">
+    </div>
+      <ng-container *ngIf="character">
+        <div class="info">
+          <h1 class="text-primary">{{character.name}}</h1>
+          <p [innerHtml]="character.description"></p>
+        </div>
+
+        <!-- comics -->
+        <app-list-group title="Comics" [items]="character['comics']['items']"></app-list-group>
+
+        <!-- series -->
+        <app-list-group title="Series" [items]="character['series']['items']"></app-list-group>
+
+        <!-- stories -->
+        <app-list-group title="Stories" [items]="character['stories']['items']"></app-list-group>
+
+        <!-- events -->
+        <app-list-group title="Events" [items]="character['events']['items']"></app-list-group>
+
+        <!-- references -->
+        <app-list-group title="References" key="type" link="url" [isLink]="true" [items]="character['urls']">
+        </app-list-group>
+
+
+      </ng-container>
+  </div>
+
+
+  <ng-template #joke>
+    <app-joke></app-joke>
+  </ng-template>
+</main>

@@ -1,0 +1,30 @@
+.contentPaginator{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.contentBtn{
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnPaginator{
+  height: 48px;
+  font-weight: 900;
+  width: 30%;
+  border-radius: 20px;
+}
+
+@media (max-width: 720px){
+  .btnPaginator{
+    width: 45%;
+  }
+}
+
+.btnPaginator:hover{
+  background-color: #F43735;
+  color: #d1d1d1;
+}
