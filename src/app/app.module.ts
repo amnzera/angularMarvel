@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {CharactersService} from "./core/services/characters.service";
+import {MarvelService} from "./core/services/marvel.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./core/interceptor/auth.interceptor";
@@ -10,10 +10,15 @@ import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './page/home/home.component';
 import { CardComponent } from './components/card/card.component';
-import { FavoritesComponent } from './page/favorites/favorites.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { DetailsComponent } from './page/details/details.component';
 import { ListGroupComponent } from './components/list-group/list-group.component';
+import { ComicsComponent } from './page/comics/comics.component';
+import { DetailComicComponent } from './page/detail-comic/detail-comic.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { JokeComponent } from './components/joke/joke.component';
+import { SeriesComponent } from './page/series/series.component';
+import { SerieDetailComponent } from './page/serie-detail/serie-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +27,15 @@ import { ListGroupComponent } from './components/list-group/list-group.component
     HeaderComponent,
     HomeComponent,
     CardComponent,
-    FavoritesComponent,
     PaginatorComponent,
     DetailsComponent,
-    ListGroupComponent
+    ListGroupComponent,
+    ComicsComponent,
+    DetailComicComponent,
+    LoadingComponent,
+    JokeComponent,
+    SeriesComponent,
+    SerieDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +49,7 @@ import { ListGroupComponent } from './components/list-group/list-group.component
       useClass: AuthInterceptor,
       multi: true
     },
-    CharactersService
+    MarvelService
   ],
   bootstrap: [AppComponent]
 })

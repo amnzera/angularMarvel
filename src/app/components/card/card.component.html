@@ -1,18 +1,41 @@
-<!--<section className={ `${CardStyle.main} ${favorited ? CardStyle.favorited : '' }`  }>-->
-<section class="main">
-  <a class="imgContent" (click)="details(hero)">
+<section class="main" *ngIf="hero">
+  <a class="imgContent" (click)="clickAction(hero)">
     <img class="img" [src]="hero.thumbnail.path + '.' + hero.thumbnail.extension" alt="Hero">
   </a>
 
-  <button class="addHero" type="button"><img style="width: 38px" src="assets/icons/add-user.png"></button>
-
-  <div class="cardDescription" (click)="details(hero)">
+  <div class="cardDescription" (click)="clickAction(hero)">
         <span class="nameHero">
           {{hero.name.substr(0, 12)}}
         </span><br/>
     <span class="description">
     {{hero.description.substr(0, 80)}}
   </span>
+  </div>
+
+</section>
+
+<section class="main" *ngIf="comic">
+  <a class="imgContent" (click)="clickAction(comic)">
+    <img class="img" [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" alt="Hero">
+  </a>
+
+  <div class="cardDescription" (click)="clickAction(comic)">
+        <span class="nameHero">
+          {{comic.title}}
+        </span>
+  </div>
+
+</section>
+
+<section class="main" *ngIf="serie">
+  <a class="imgContent" (click)="clickAction(serie)">
+    <img class="img" [src]="serie.thumbnail.path + '.' + serie.thumbnail.extension" alt="Series">
+  </a>
+
+  <div class="cardDescription" (click)="clickAction(serie)">
+        <span class="nameHero">
+          {{serie.title}}
+        </span>
   </div>
 
 </section>

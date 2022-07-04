@@ -1,0 +1,38 @@
+<main>
+  <div *ngIf="(serie$ | async) as serie else joke">
+    <div class="header">
+      <img alt="imagem"  *ngIf="serie" [src]="getImage(serie)">
+    </div>
+
+
+    <ng-container *ngIf="serie">
+      <div class="info">
+        <h1 class="text-primary">{{serie.name}}</h1>
+        <p [innerHtml]="serie.description"></p>
+      </div>
+
+      <!-- characters -->
+      <app-list-group title="Characters" [items]="serie['characters']['items']"></app-list-group>
+
+      <!-- creators -->
+      <app-list-group title="Creators" [items]="serie['creators']['items']"></app-list-group>
+
+      <!-- stories -->
+      <app-list-group title="Stories" [items]="serie['stories']['items']"></app-list-group>
+
+      <!-- events -->
+      <app-list-group title="Events" [items]="serie['events']['items']"></app-list-group>
+
+      <!-- references -->
+      <app-list-group title="References" key="type" link="url" [isLink]="true" [items]="serie['urls']"></app-list-group>
+
+
+    </ng-container>
+
+  </div>
+
+  <ng-template #joke>
+    <app-joke></app-joke>
+  </ng-template>
+
+</main>

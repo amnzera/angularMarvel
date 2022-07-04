@@ -1,6 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CharactersService} from "../../core/services/characters.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-card',
@@ -10,14 +8,17 @@ import {Router} from "@angular/router";
 export class CardComponent implements OnInit {
 
   @Input() hero: any;
-  constructor(private characterService: CharactersService , private router: Router) { }
+  @Input() comic: any;
+  @Input() serie: any;
+  @Output() clickEmitter = new EventEmitter;
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  details(hero: any){
-    this.characterService.setHero(hero);
-    this.router.navigate(['/details'])
-
+  clickAction(payload: any){
+    this.clickEmitter.emit(payload);
   }
+
 }

@@ -1,8 +1,8 @@
   <section class="main">
-    <div class="flexGrid" *ngIf="heroes else loading">
+    <div class="flexGrid" *ngIf="comics else loading">
 
-      <div class="col" *ngFor="let hero of heroes">
-        <app-card (clickEmitter)="details($event)" [hero]="hero"></app-card>
+      <div class="col" *ngFor="let comic of comics">
+        <app-card (clickEmitter)="detailsComic($event)" [comic]="comic"></app-card>
       </div>
 
     </div>
@@ -13,3 +13,4 @@
 
     <app-paginator (paginatorEmitter)="paginator($event)" ></app-paginator>
   </section>
+

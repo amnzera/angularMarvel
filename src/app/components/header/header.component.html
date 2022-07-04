@@ -1,6 +1,19 @@
 <header>
   <nav class="nav" >
     <a [routerLink]="['/home']" ><img class="logo" alt="stack overflow" src="../../../assets/icons/logo.svg" ></a>
-    <a  class="btnTeam"> <span >Your Team</span> <img class="icon" src="../../../assets/icons/team.png"></a>
+<!--    <a  class="btnTeam"> <span >Your Team</span> <img class="icon" src="../../../assets/icons/team.png"></a>-->
+
+      <div class="links">
+        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">
+          Character
+        </a>
+        <a class="nav-link" [routerLink]="['/comics']" [routerLinkActive]="['active']">
+          Comics
+        </a>
+        <a class="nav-link" [routerLink]="['/series']" [routerLinkActive]="['active']">
+          Series
+        </a>
+      </div>
+
   </nav>
 </header>

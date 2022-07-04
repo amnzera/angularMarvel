@@ -1,14 +1,15 @@
 .main{
+  cursor: pointer;
   position: relative;
   height: 376px;
   width: 270px;
   border-radius: 5px 20px;
-  background: #FFFFFF;
   margin-bottom: 52px;
   font-style: oblique;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
+  background-color: #E5E5E5;
 
   &.favorited{
     .addHero{
@@ -29,11 +30,11 @@
 
 .nameHero{
   width: 100%;
-  font-size: 32px;
+  font-size: 1.3rem;
   color: black;
   font-family: 'Roboto';
   font-weight: 700;
-  line-height: 37px;
+  line-height: 26px;
   text-align: center;
 }
 
@@ -41,19 +42,11 @@
   padding-left: 30px;
   padding-right: 30px;
   color: black;
+  height: 30%;
+  overflow: auto;
 }
 
 .description{
   height: 100%
 }
 
-.addHero{
-  width: 54px !important;
-  height: 54.02px !important;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  background-color: #F5F5F5;
-  border-radius: 30px;
-  border: transparent;
-  z-index: 1;
-  position: absolute;
-}

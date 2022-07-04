@@ -1,8 +1,8 @@
 <main>
 
-  <div *ngIf="(hero$ | async) as character; else elseBlock">
+  <div *ngIf="(hero$ | async) as character; else joke">
     <div class="header">
-      <img *ngIf="character" [src]="getImage(character)">
+      <img alt="image" *ngIf="character" [src]="getImage(character)">
     </div>
       <ng-container *ngIf="character">
         <div class="info">
@@ -31,11 +31,7 @@
   </div>
 
 
-  <ng-template #elseBlock>
-    <div class="joke">
-      <a [routerLink]="['/home']" >  < VOLTAR</a>
-      <img src="assets/img/joke.png" >
-      Algo de errado não está certo
-    </div>
+  <ng-template #joke>
+    <app-joke></app-joke>
   </ng-template>
 </main>

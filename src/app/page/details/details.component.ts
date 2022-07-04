@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CharactersService} from "../../core/services/characters.service";
+import {MarvelService} from "../../core/services/marvel.service";
 import {Subject} from "rxjs";
 
 @Component({
@@ -11,10 +11,10 @@ export class DetailsComponent implements OnInit {
 
   public hero$ = new Subject<any>();
 
-  constructor(private characterService: CharactersService) { }
+  constructor(private characterService: MarvelService) { }
 
   ngOnInit(): void {
-   this.hero$ = this.characterService.hero
+   this.hero$ = this.characterService.hero;
   }
 
   getImage(character: any) {

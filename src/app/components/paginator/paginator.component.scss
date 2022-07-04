@@ -1,15 +1,30 @@
-a{
-  color: blue;
+.contentPaginator{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-a:link, a:visited {
-  text-decoration: none
+.contentBtn{
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
 }
-a:hover {
-  text-decoration: underline;
-  color: #f00;
-  cursor: pointer;
+
+.btnPaginator{
+  height: 48px;
+  font-weight: 900;
+  width: 30%;
+  border-radius: 20px;
 }
-a:active {
-  text-decoration: none
+
+@media (max-width: 720px){
+  .btnPaginator{
+    width: 45%;
+  }
+}
+
+.btnPaginator:hover{
+  background-color: #F43735;
+  color: #d1d1d1;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginatorComponent implements OnInit {
 
-  public pages = [1,2,3,4,5,6,7,8,9,10]
+  @Output() paginatorEmitter = new EventEmitter;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setOffset(offset: number){
+    this.paginatorEmitter.emit(offset)
+    window.scroll({behavior: "smooth", top: 0 , left: 0})
   }
 
 }

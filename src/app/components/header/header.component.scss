@@ -12,15 +12,6 @@
   width: 50px;
 }
 
-@media (max-width: 710px){
-  .nav{
-    flex-direction: column;
-    padding-bottom: 10px;
-  }
-  .logo{
-    width: 100%
-  }
-}
 
 .btnTeam{
   display: flex;
@@ -39,3 +30,47 @@
   font-style: normal;
   font-weight: normal;
 }
+
+.links{
+  width: 15%;
+  min-width: 360px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-link{
+  text-decoration: none;
+  color: #d1d1d1;
+  font-size: 30px;
+  font-family: 'Roboto';
+  font-style: normal;
+}
+.nav-link:hover,active{
+  color: #F43735;
+}
+
+.active{
+  color: blue;
+}
+
+@media (max-width: 540px){
+  .flexGrid .col{
+    width: 30%;
+  }
+}
+
+@media (max-width: 800px){
+  .nav{
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+  .logo{
+    width: 100%;
+  }
+
+  .links{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
