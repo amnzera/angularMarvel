@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import {MarvelService} from "./core/services/marvel.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {AuthInterceptor} from "./core/interceptor/auth.interceptor";
+// import {AuthInterceptor} from "./core/interceptor/auth.interceptor";
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './page/home/home.component';
@@ -19,6 +19,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { JokeComponent } from './components/joke/joke.component';
 import { SeriesComponent } from './page/series/series.component';
 import { SerieDetailComponent } from './page/serie-detail/serie-detail.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -41,14 +42,15 @@ import { SerieDetailComponent } from './page/serie-detail/serie-detail.component
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GraphQLModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // },
     MarvelService
   ],
   bootstrap: [AppComponent]

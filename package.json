@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "teste": "node --experimental-specifier-resolution=node src/app/queries/get-products.query",
+    "teste": "node src/app/queries/ofuscate-graphql.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -20,10 +20,16 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@apollo/client": "3.7.9",
     "@types/crypto-js": "^4.1.1",
     "@types/node": "^18.14.0",
+    "acorn": "^8.8.2",
+    "apollo-angular": "4.2.1",
     "crypto-js": "^4.1.1",
+    "graphql": "^16",
     "graphql-tag": "^2.12.6",
+    "graphql-ws": "^5.10.0",
+    "react": "^18.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -33,12 +39,15 @@
     "@angular/cli": "~14.0.2",
     "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
+    "@types/node": "^12.11.1",
+    "@types/react": "^18.0.28",
     "jasmine-core": "~4.1.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "ts-node": "~8.3.0",
     "typescript": "~4.7.2"
   }
 }

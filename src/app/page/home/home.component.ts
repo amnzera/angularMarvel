@@ -5,6 +5,12 @@ import {Router} from "@angular/router";
 // @ts-ignore
 import { GET_PRODUCTS } from '../../queries/get-products.query.mjs';
 import * as CryptoJS from 'crypto-js';
+import {Apollo , gql} from "apollo-angular";
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import {DataProxy} from "@apollo/client";
+
+
 
 @Component({
   selector: 'app-home',
@@ -15,25 +21,44 @@ export class HomeComponent implements OnInit  {
 
   heroes: any
   offset: number = 0;
+  posts: Observable<any[]> | undefined;
 
-  constructor(private marvelService: MarvelService, private router: Router) { }
+  constructor(
+    private marvelService: MarvelService,
+    private router: Router,
+    private apollo: Apollo
+    ) { }
 
-  ngOnInit(): void {
-    console.log(GET_PRODUCTS)
-    this.decryptQuery(GET_PRODUCTS)
-    // const x = CryptoJS.AES.decrypt(GET_PRODUCTS,'secretKey')
-    // const decryptedQuery = x.toString(CryptoJS.enc.Utf8);
-    // console.log(decryptedQuery)
-   this.getCharacters()
+  async ngOnInit(): Promise<void> {
+    this.call(this.removeCryptography()).subscribe((teste: any) => {
+      console.log(teste)
+    })
   }
 
-
-  decryptQuery(encryptedQuery: string) {
-    const decrypted = CryptoJS.AES.decrypt(encryptedQuery, 'secretKey');
+  removeCryptography() {
+    const decrypted = CryptoJS.AES.decrypt(GET_PRODUCTS, 'secretKey');
     const originalQuery = decrypted.toString(CryptoJS.enc.Utf8);
-    // return originalQuery;
-    console.log(originalQuery)
+    const decryptedQuery = gql(originalQuery)
+    return decryptedQuery;
   }
+
+
+  call(query: any): Observable<any> {
+    console.log(GET_PRODUCTS)
+    console.log(query)
+    return this.apollo
+    .watchQuery<any>({
+      query: query,
+    }).valueChanges;
+  }
+
+
+  // decryptQuery(encryptedQuery: string) {
+  //   const decrypted = CryptoJS.AES.decrypt(encryptedQuery, 'secretKey');
+  //   const originalQuery = decrypted.toString(CryptoJS.enc.Utf8);
+  //   // return originalQuery;
+  //   console.log(originalQuery)
+  // }
 
   paginator(offset: number){
     this.heroes = null;
