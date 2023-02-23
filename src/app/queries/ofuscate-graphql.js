@@ -3,7 +3,6 @@ import CryptoJS from 'crypto-js';
 
 
 const filePath = new URL(import.meta.url).pathname.substring(1).replace('ofuscate-graphql.js','get-products.query.ts');
-let arrayConstName = []
 let constList = '';
 function encryptQuery() {
 
@@ -24,26 +23,12 @@ function encryptQuery() {
     });
   }
 
-
   constants.forEach((data) => {
     const encryptedQuery = CryptoJS.AES.encrypt(data.valueConst, 'secretKey').toString();
     constList = constList + `export const ${data.nameConst} = \`${encryptedQuery}\`` + '\n';
   })
   fs.writeFileSync(filePath, constList);
   console.log(constList);
-  // console.log(fileContent)
-
-
-
-  // const constName = contentFile.match(/\bconst\s+(\w+)/g);
-  // arrayConstName.push(constName)
-  //
-  // arrayImports.forEach((teste,index) => {
-  //   const encryptedQuery = CryptoJS.AES.encrypt(teste.loc?.source.body || '', 'secretKey').toString();
-  //   constList = constList + `export ${arrayConstName[0][index]} = \`${encryptedQuery}\`` + '\n';
-  // })
-  // constList += ' teste'
-  // fs.writeFileSync(filePath, constList);
 
 }
 
