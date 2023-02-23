@@ -2,13 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {MarvelService} from "../../core/services/marvel.service";
 import {take} from "rxjs";
 import {Router} from "@angular/router";
-// @ts-ignore
-import { GET_PRODUCTS } from '../../queries/get-products.query.mjs';
+import { GET_PRODUCTS } from '../../queries/get-products.query';
 import * as CryptoJS from 'crypto-js';
 import {Apollo , gql} from "apollo-angular";
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import {DataProxy} from "@apollo/client";
 
 
 
@@ -30,6 +27,7 @@ export class HomeComponent implements OnInit  {
     ) { }
 
   async ngOnInit(): Promise<void> {
+
     this.call(this.removeCryptography()).subscribe((teste: any) => {
       console.log(teste)
     })
@@ -38,17 +36,15 @@ export class HomeComponent implements OnInit  {
   removeCryptography() {
     const decrypted = CryptoJS.AES.decrypt(GET_PRODUCTS, 'secretKey');
     const originalQuery = decrypted.toString(CryptoJS.enc.Utf8);
-    const decryptedQuery = gql(originalQuery)
+    const decryptedQuery = originalQuery
     return decryptedQuery;
   }
 
 
   call(query: any): Observable<any> {
-    console.log(GET_PRODUCTS)
-    console.log(query)
     return this.apollo
     .watchQuery<any>({
-      query: query,
+      query: gql(query),
     }).valueChanges;
   }
 
