@@ -39,6 +39,7 @@ export class MarvelService {
     )
   }
 
+
   getAllComics(offset: number = 0){
     return this.http.get<any>(`https://gateway.marvel.com/v1/public/comics?limit=50?&offset=${offset.toString()}`).pipe(
       map(response => {
