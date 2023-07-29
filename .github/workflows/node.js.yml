@@ -39,4 +39,8 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
+        env:
+          ID_TOKEN: ${{ env.ID_TOKEN }}
         uses: actions/deploy-pages@v2
+        with:
+          token: ${{ env.ID_TOKEN }}
