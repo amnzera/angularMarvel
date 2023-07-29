@@ -29,9 +29,6 @@ jobs:
     - run: npm ci
     - run: npm run build
 
-    - name: copy files
-      run: sudo cp -r dist/* var/www/html
-
  # Deployment job
   deploy:
     environment:
