@@ -39,6 +39,8 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
+        permissions:
+        id-token: write
         env:
           ID_TOKEN: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4ZLQB7VtGcz+PeT/7X+PnQZDHgWRcr/RIVxwDPgT5AZ2524J7iUHmFrNP1kTqKJF7G/ca6cli3xOREwwrEhEkc+5mrzs4VvvasvYRz67s7s7HhXONOW5J5N6DNnIuee+ZScNNbD+MBuckZwwHDs4WAdinvM5Q+ZduqvelAtioqgLSBSDSs2HYGdTz4aKWw72Oji5oz6mjlhL3Br3T9pXtsYUK4poo7ILyWf8GAGBivonfSG+zqQyofRpAd5yAnGUt82hHdmJe0rtHFBSrAlsQQm/VW2e6d1j0FPV9BiJBXIUlyF2vojB1GpsVJJKW3lzr13jjqaMbNw9R/pWOESiMKebn3ANALlcmZbf2iA9TSLO/itsp9xRH/FoXI6YJ3QqyfwlXYZeG5zfBlOCcCDu2KLfhdU/rQI35lo+vxyrwkxrBPFp87XPFx5WAQlZ/DkoxwHYarO09CPlOXcB3yUwZv19n9N6z2OALZQV1pkXrP9roQG1XnHIWrRi8+FxT1kvr5Q35cuIGUK/JraVjEQC81KM++u/NeXhE7z0CItWrScbJmXdjKSP/knQBrC5UeeB1cj9Lw8bFGCicUsWolR/IN6h3H072fUrjTf2n0Nn1i/TAjcqm+GgeWtFnfVrjUOQ7jXHZUK7zQL3jDcfDJ28CN/mWs6KYw8nFB182Z/Panw== amn_scout@hotmail.com
         uses: actions/deploy-pages@v2
