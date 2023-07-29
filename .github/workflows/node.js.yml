@@ -1,50 +1,55 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# Este fluxo de trabalho realizará uma instalação limpa das dependências do Node.js,
+# fará cache e restauração dessas dependências, criará o código-fonte e executará testes
+# em diferentes versões do Node.js.
+# Para obter mais informações, consulte: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: Node.js CI
 
+# Define quando esse fluxo de trabalho será acionado:
+# - No caso de push (envio de código) para a branch "master".
+# - No caso de pull request (solicitação de envio de código) para a branch "master".
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
 
+    # Define o sistema operacional onde o trabalho será executado.
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        # Veja o cronograma de versões suportadas do Node.js em https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build
+      - uses: actions/checkout@v3
+      - name: Utilizar o Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
 
- # Deployment job
-  permissions:
-    id-token: write
-
+  # Tarefa de Implantação
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    name: Publicar no GitHub Pages
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Publicar no GitHub Pages
         env:
-          ID_TOKEN: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4ZLQB7VtGcz+PeT/7X+PnQZDHgWRcr/RIVxwDPgT5AZ2524J7iUHmFrNP1kTqKJF7G/ca6cli3xOREwwrEhEkc+5mrzs4VvvasvYRz67s7s7HhXONOW5J5N6DNnIuee+ZScNNbD+MBuckZwwHDs4WAdinvM5Q+ZduqvelAtioqgLSBSDSs2HYGdTz4aKWw72Oji5oz6mjlhL3Br3T9pXtsYUK4poo7ILyWf8GAGBivonfSG+zqQyofRpAd5yAnGUt82hHdmJe0rtHFBSrAlsQQm/VW2e6d1j0FPV9BiJBXIUlyF2vojB1GpsVJJKW3lzr13jjqaMbNw9R/pWOESiMKebn3ANALlcmZbf2iA9TSLO/itsp9xRH/FoXI6YJ3QqyfwlXYZeG5zfBlOCcCDu2KLfhdU/rQI35lo+vxyrwkxrBPFp87XPFx5WAQlZ/DkoxwHYarO09CPlOXcB3yUwZv19n9N6z2OALZQV1pkXrP9roQG1XnHIWrRi8+FxT1kvr5Q35cuIGUK/JraVjEQC81KM++u/NeXhE7z0CItWrScbJmXdjKSP/knQBrC5UeeB1cj9Lw8bFGCicUsWolR/IN6h3H072fUrjTf2n0Nn1i/TAjcqm+GgeWtFnfVrjUOQ7jXHZUK7zQL3jDcfDJ28CN/mWs6KYw8nFB182Z/Panw== amn_scout@hotmail.com
-        uses: actions/deploy-pages@v2
+          # Adicione sua chave SSH privada criptografada aqui (caso seja um repositório privado)
+          # Use um segredo do GitHub para armazenar a chave privada com segurança.
+          # Exemplo: GH_PAGES_DEPLOY_KEY: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
+          ID_TOKEN: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
+        uses: peaceiris/actions-gh-pages@v3 # Utilizando uma ação popular de implantação no GitHub Pages
         with:
-          token: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4ZLQB7VtGcz+PeT/7X+PnQZDHgWRcr/RIVxwDPgT5AZ2524J7iUHmFrNP1kTqKJF7G/ca6cli3xOREwwrEhEkc+5mrzs4VvvasvYRz67s7s7HhXONOW5J5N6DNnIuee+ZScNNbD+MBuckZwwHDs4WAdinvM5Q+ZduqvelAtioqgLSBSDSs2HYGdTz4aKWw72Oji5oz6mjlhL3Br3T9pXtsYUK4poo7ILyWf8GAGBivonfSG+zqQyofRpAd5yAnGUt82hHdmJe0rtHFBSrAlsQQm/VW2e6d1j0FPV9BiJBXIUlyF2vojB1GpsVJJKW3lzr13jjqaMbNw9R/pWOESiMKebn3ANALlcmZbf2iA9TSLO/itsp9xRH/FoXI6YJ3QqyfwlXYZeG5zfBlOCcCDu2KLfhdU/rQI35lo+vxyrwkxrBPFp87XPFx5WAQlZ/DkoxwHYarO09CPlOXcB3yUwZv19n9N6z2OALZQV1pkXrP9roQG1XnHIWrRi8+FxT1kvr5Q35cuIGUK/JraVjEQC81KM++u/NeXhE7z0CItWrScbJmXdjKSP/knQBrC5UeeB1cj9Lw8bFGCicUsWolR/IN6h3H072fUrjTf2n0Nn1i/TAjcqm+GgeWtFnfVrjUOQ7jXHZUK7zQL3jDcfDJ28CN/mWs6KYw8nFB182Z/Panw== amn_scout@hotmail.com
-
+          publish_dir: ./build # Modifique para o caminho do diretório onde estão os arquivos de build
+          publish_branch: gh-pages # Especifique a branch na qual os arquivos serão publicados (normalmente "gh-pages" para GitHub Pages)
