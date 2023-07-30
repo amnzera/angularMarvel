@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "teste": "node --experimental-specifier-resolution=node src/app/queries/get-products.query",
-    "build": "ng build --base-href=/my-angular-app/",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
