@@ -1,51 +1,35 @@
-# Este fluxo de trabalho realizará uma instalação limpa das dependências do Node.js,
-# fará cache e restauração dessas dependências, criará o código-fonte e executará testes
-# em diferentes versões do Node.js.
-# Para obter mais informações, consulte: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+name: GitHub Pages
 
-name: Node.js CI
-
-# Define quando esse fluxo de trabalho será acionado:
-# - No caso de push (envio de código) para a branch "master".
-# - No caso de pull request (solicitação de envio de código) para a branch "master".
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
+      - main
 
 jobs:
-  build:
-
-    # Define o sistema operacional onde o trabalho será executado.
+  deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # Veja o cronograma de versões suportadas do Node.js em https://nodejs.org/en/about/releases/
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Utilizar o Node.js ${{ matrix.node-version }}
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
+          node-version: '16'
 
-  # Tarefa de Implantação
-  deploy:
-    name: Publicar no GitHub Pages
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Publicar no GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test:headless
+
+      - name: Build
+        run: npm run build:prod
+
+      - name: Deploy
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages
-          folder: /dist
-
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/marvel
+          enable_jekyll: true
