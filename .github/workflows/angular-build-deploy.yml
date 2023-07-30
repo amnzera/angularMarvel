@@ -35,7 +35,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run build
+      - run: ng build --prod --base-href=/my-angular-app/
 
   # Tarefa de Implantação
   deploy:
@@ -52,5 +52,5 @@ jobs:
           ID_TOKEN: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
         uses: peaceiris/actions-gh-pages@v3 # Utilizando uma ação popular de implantação no GitHub Pages
         with:
-          publish_dir: ./build # Modifique para o caminho do diretório onde estão os arquivos de build
-          publish_branch: gh-pages # Especifique a branch na qual os arquivos serão publicados (normalmente "gh-pages" para GitHub Pages)
+          branch: gh-pages
+          folder: dist/my-angular-app
