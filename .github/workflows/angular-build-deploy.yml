@@ -44,7 +44,8 @@ jobs:
     needs: build
     steps:
       - name: Publicar no GitHub Pages
-        uses: amnzera/angularMarvel
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
           folder: dist/my-angular-app
+
